@@ -1,17 +1,17 @@
 const express = require("express");
 const nunjucks = require("nunjucks");
-const routes = require('./routes/');
 const app = express();
 
 //connecting express with nunjuncks
 app.set("view engine", "html");
 app.engine('html', nunjucks.render);
-nunjucks.configure('views', { noCache: true }); //cache off during development
-
-app.use('/', routes);
+nunjucks.configure('views', { noCache: true });
+app.get('/', (req, res, next)=> {
+  res.render('index', { hello: 'summer'});
+});
 
 app.use("/special/",function(req,res,next){
-  console.log("This is a special place.");
+  console.log("Reserve a place here");
   next();
 })
 
