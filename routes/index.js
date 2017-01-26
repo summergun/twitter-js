@@ -29,7 +29,7 @@ module.exports = function(io) {
 
 	router.get('/users/:name', function(req, res) {
 	  var targetName = req.params.name;
-	  console.log("HIT THIS", targetName);
+	  console.log("HIT ME", targetName);
 	  var list = tweetBank.find({name: targetName});
 	  console.log(list);
 	  res.render( 'index', { tweets: list, showForm: true, name: targetName } );
