@@ -1,13 +1,19 @@
 const express = require("express");
 const nunjucks = require("nunjucks");
+const routes = require('./routes');
 const app = express();
+const path = require('pate');
+const bodyParser = require('body-parser');
+const server = app.listen(3000);
+const io=socketio.listen(server);
 
 //connecting express with nunjuncks
 app.set("view engine", "html"); //the default view engine to html, so we don't have to specify on every render
 app.engine('html', nunjucks.render); //to use nunjucks.reder as the function to actually render html
-nunjucks.render('index.html', locals, function (err, output) {
+nunjucks.render('index.html', function (err, output) {
     console.log(output);
 });
+app.use('/',routes);
 
 
 nunjucks.configure('views', { noCache: true });//point nunjucks to the proper directory for templates,cache off
