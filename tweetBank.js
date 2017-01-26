@@ -15,6 +15,8 @@ function find (properties) {
   return _.cloneDeep(_.filter(data, properties));
 }
 
+module.exports = {add,list,find};
+
 const randArrayEl = function(arr) {
   return arr[Math.floor(Math.random() * arr.length)];
 };
